@@ -15,6 +15,9 @@ public class chatBot extends javax.swing.JFrame {
      */
     public chatBot() {
         initComponents();
+        setResizable(false);
+        setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -29,9 +32,9 @@ public class chatBot extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        imgChatBot = new javax.swing.JLabel();
+        nomeChatBot = new javax.swing.JLabel();
+        nomeCriador = new javax.swing.JLabel();
         btnAprendizagem = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         areaDialogo = new javax.swing.JTextArea();
@@ -45,21 +48,27 @@ public class chatBot extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem2 = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel3.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
+        imgChatBot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon.png"))); // NOI18N
+        imgChatBot.setText("jLabel1");
 
-        jLabel2.setFont(new java.awt.Font("Georgia", 2, 18)); // NOI18N
-        jLabel2.setText("Nome: Bot Bi");
+        nomeChatBot.setFont(new java.awt.Font("Georgia", 2, 18)); // NOI18N
+        nomeChatBot.setText("Nome: Bot Bi");
 
-        jLabel3.setFont(new java.awt.Font("Georgia", 0, 11)); // NOI18N
-        jLabel3.setText("Criador: Gabriela Oliveira");
+        nomeCriador.setFont(new java.awt.Font("Georgia", 0, 11)); // NOI18N
+        nomeCriador.setText("Criador: Gabriela Oliveira");
 
         btnAprendizagem.setBackground(new java.awt.Color(153, 153, 153));
         btnAprendizagem.setText("Aprendizagem");
+        btnAprendizagem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAprendizagemActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -67,31 +76,32 @@ public class chatBot extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(imgChatBot, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(nomeChatBot)
+                        .addContainerGap(555, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                        .addComponent(nomeCriador)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAprendizagem)))
-                .addContainerGap())
+                        .addComponent(btnAprendizagem))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(imgChatBot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addComponent(jLabel2)
+                .addComponent(nomeChatBot)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(btnAprendizagem))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(nomeCriador)
+                .addContainerGap(20, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnAprendizagem))
         );
 
+        areaDialogo.setEditable(false);
         areaDialogo.setBackground(java.awt.SystemColor.controlHighlight);
         areaDialogo.setColumns(20);
         areaDialogo.setRows(5);
@@ -101,11 +111,6 @@ public class chatBot extends javax.swing.JFrame {
         btnEnviar.setText("Enviar");
 
         lista.setBackground(new java.awt.Color(204, 204, 204));
-        lista.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane2.setViewportView(lista);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -160,6 +165,11 @@ public class chatBot extends javax.swing.JFrame {
         jMenu1.add(jSeparator1);
 
         jMenuItem2.setText("Exit");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuBar1.add(jMenu1);
@@ -179,6 +189,15 @@ public class chatBot extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAprendizagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAprendizagemActionPerformed
+       aprendizagem ap = new aprendizagem();
+       ap.setVisible(true);
+    }//GEN-LAST:event_btnAprendizagemActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,9 +238,7 @@ public class chatBot extends javax.swing.JFrame {
     private javax.swing.JTextArea areaDialogo;
     private javax.swing.JButton btnAprendizagem;
     private javax.swing.JButton btnEnviar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel imgChatBot;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -233,6 +250,8 @@ public class chatBot extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JList<String> lista;
+    private javax.swing.JLabel nomeChatBot;
+    private javax.swing.JLabel nomeCriador;
     private javax.swing.JTextField txtFrase;
     // End of variables declaration//GEN-END:variables
 }
